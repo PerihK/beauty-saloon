@@ -1,0 +1,99 @@
+﻿<Window x:Class="beauty_saloon.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:beauty_saloon"
+        mc:Ignorable="d"
+        xmlns:converters="clr-namespace:beauty_saloon.Converter"
+        Title="Салон красоты 'Бархатные бровки'" Height="550" Width="800"
+        Icon="beauty_logo.ico">
+    <Window.Resources>
+        <converters:TimeConverter x:Key="c" />
+        <converters:DiscountConverter x:Key="Disc"/>
+    </Window.Resources>
+    <StackPanel Background="#FF4A6D">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Name="title">
+                <Label HorizontalAlignment="Center" Margin="0,0,79,0" FontSize="20" Content="Салон красоты 'Бархатные бровки'" FontFamily="Tahoma"/>
+                <TextBox Width="128" Height="26" Name="textadm" TextChanged="TextBox_TextChanged" />
+                <Button Content="Ближайшие записи" Click="AdminGo"/>
+            </StackPanel>
+            <StackPanel  HorizontalAlignment="Stretch" Height="376" Width="779">
+                <ListBox ItemsSource="{Binding}" Name="SalonList" Height="376" Width="778">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions >
+                                    <RowDefinition Height="100" />
+                                </Grid.RowDefinitions>
+                                <TextBlock> 
+                                    <Hyperlink Click="serviceClick"> 
+                                        <Image Width="100" Source="{Binding MainImagePath, Converter={StaticResource PathConverter}}"/>
+                                    </Hyperlink>
+                                </TextBlock>
+                                <DockPanel  Grid.Column="1">
+                                    <TextBlock Margin="20,0,0,0" FontFamily="Tahoma" DockPanel.Dock="Top" >                                    
+                                        <Run Text="{Binding Title}" FontSize="17"/>
+                                    </TextBlock>
+                                    <TextBlock  Margin="20,0,0,0" FontFamily="Tahoma" HorizontalAlignment="Center" DockPanel.Dock="Top">
+                                        <Run Text="{Binding Cost,StringFormat={}{0:F0}}"/> <Run Text="рублей"/> <Run Text="за"/> <Run Name="time" Text="{Binding DurationInSeconds, Converter={StaticResource TimeConverter}}"/> <Run Text="минут"/>
+                                    </TextBlock>
+                                    <TextBlock  Margin="20,0,0,0"  FontFamily="Tahoma" DockPanel.Dock="Bottom">
+                                        <Border x:Name="borderAdm" Visibility="Visible">
+                                            <StackPanel>
+                                                <Button Name="btnredakt" Background="#E1E4FF" Content="редактировать" Click="redakt"/>
+                                            <Button Background="#E1E4FF" Content="удалить" Click="Delete"/>
+                                            </StackPanel>
+                                            <Border.Style >
+                                                <Style x:Name="hidden" TargetType="{x:Type Border}">
+                                                    <Style.Triggers>
+                                                          <Trigger Property="IsMouseOver" Value="True">
+                                                                <Trigger.Setters>
+                                                                    <Setter Property="Visibility" Value="Visible" />
+                                                                </Trigger.Setters>
+                                                            </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                        </Border>
+                                    </TextBlock>
+                                    <TextBlock  Margin="20,0,0,0" FontFamily="Tahoma" Visibility="Visible" DockPanel.Dock="Bottom">
+                                       <Run Text="* скидка"  /> <Run Text="{Binding Discount,StringFormat={}{0:P}}"/>
+                                        <Run Text="{Binding Cost,Converter={StaticResource Disc}}"/>
+                                    </TextBlock>
+                                </DockPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+            <StackPanel Margin="270,0,0,0" Orientation="Horizontal">
+                <Label HorizontalAlignment="Center" Content="Поиск"/>
+                <TextBox Width="162" Name="findbox" TextChanged="findservice" />
+                <ComboBox Name="filtr">
+                    <ComboBoxItem Content="Цена по убыванию"/>
+                    <ComboBoxItem Content="Цена по возрастанию"/>
+                    <ComboBoxItem Content="По времени"/>
+                    <ComboBoxItem Content="По скидке"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button Content="Добавить услугу" FontFamily="Tahoma" Background="#E1E4FF" Click="AddService" Height="23" Width="240"/>
+                <TextBlock Background="#E1E4FF" FontFamily="Tahoma" Width="240" Height="23">
+                <Run Text="Всего услуг: "/>
+                <Run  Name="Count"/>
+                <Run Text="Всего услуг: "/>
+                    <Run Name="Countfull"/>
+                </TextBlock>
+                   
+               
+            </StackPanel>
+           
+        </StackPanel>
+    </StackPanel>
+</Window>

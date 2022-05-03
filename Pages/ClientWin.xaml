@@ -1,0 +1,54 @@
+﻿<Window x:Class="beauty_saloon.Pages.ClientWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:beauty_saloon.Pages"
+        xmlns:core ="clr-namespace:beauty_saloon.model"
+        ResizeMode="NoResize"
+        mc:Ignorable="d"
+        Title="ClientWin" Height="450" Width="400">
+    <Window.Resources>
+        <core:ListTitle x:Key="listTitle"/>
+    </Window.Resources>
+    <Grid Background="#FF4A6D">
+        <Image Source="/Image/beauty_logo.png" Margin="319,0,2,338" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <StackPanel Background="#FF4A6D" Orientation="Horizontal" Margin="0,0,86,0">
+            <StackPanel Background="White" Orientation="Vertical" Width="253" Height="389">
+                <Label FontFamily="Tahoma" Content="Название услуги: "/>
+
+                <TextBox IsReadOnly="True" Background="#E1E4FF" x:Name="titleText" Width="238"/>
+               
+                <Label FontFamily="Tahoma" Content="Время услуги: "/>
+                <TextBox IsReadOnly="True" Background="#E1E4FF" x:Name="sectext" Width="238"/>
+
+                <Label FontFamily="Tahoma" Content="Описание услуги: "/>
+                <TextBox IsReadOnly="True" Background="#E1E4FF" x:Name="opistext" Width="238"/>
+                <Label Content="ФИО клиента"/>
+                <ComboBox Background="#E1E4FF" Width="238" ItemsSource="{Binding Source={StaticResource listTitle}}"
+                                        DisplayMemberPath="FirstName"
+                                        Name="fiocombo"
+                                        SelectedItem="{Binding Path=ID,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        SelectedValuePath="ID"/>
+              
+                <Label Content="Ввод даты записи" Width="256"/>
+                <TextBox Background="#E1E4FF" Width="238" Name="datetext"></TextBox> 
+                <Label/>
+               
+                <Label/>
+                <DatePicker Name="datapick" Background="#E1E4FF" Width="238" Height="24">
+                </DatePicker>
+                <Button Margin="0,30,0,0" Background="#E1E4FF" x:Name="Addbtn" Content="Записать клиента" Click="AddClient"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

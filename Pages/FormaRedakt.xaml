@@ -1,0 +1,43 @@
+﻿<Window x:Class="beauty_saloon.Pages.FormaRedakt"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:beauty_saloon.Pages"
+        mc:Ignorable="d"
+        Title="Редактирование" Height="450" Width="350" ResizeMode="NoResize">
+    <Grid Background="#FF4A6D">
+        <Image Source="/Image/beauty_logo.png" Margin="281,-33,2,318" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <StackPanel Background="#FF4A6D" Orientation="Horizontal" Margin="0,0,56,0">
+            <StackPanel Background="White" Orientation="Vertical" Width="252" Height="389">
+                <Label FontFamily="Tahoma" Content="Название: "/>
+                
+                <TextBox  Background="#E1E4FF" x:Name="titleText" Width="238"/>
+                <Label FontFamily="Tahoma" Content="Цена: "/>
+                <TextBox Background="#E1E4FF" x:Name="costtext" Width="238"/>
+
+                <Label FontFamily="Tahoma" Content="Время: "/>
+                <TextBox Background="#E1E4FF" x:Name="sectext" Width="238"/>
+
+                <Label FontFamily="Tahoma" Content="Описание: "/>
+                <TextBox Background="#E1E4FF" x:Name="desktext" Width="238"/>
+
+                <Label FontFamily="Tahoma" Content="Скидка: "/>
+                <TextBox Background="#E1E4FF" x:Name="disctext" Width="238"/>
+
+                <Label FontFamily="Tahoma" Content="Изображение: "/>
+                <TextBox Background="#E1E4FF" x:Name="imagetext" Width="238"/>
+                <Button Background="#E1E4FF" Margin="0,100,0,0" Click="Save" Content="Сохранить" Width="122"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

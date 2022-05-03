@@ -1,0 +1,37 @@
+﻿<Window x:Class="beauty_saloon.Pages.AdminWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:beauty_saloon.Pages"
+        mc:Ignorable="d"
+        Title="AdminWin" Height="450" Width="800">
+    <StackPanel Background="#FF4A6D">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Name="title">
+                <Label FontSize="20" Content="Ближайшие записи" FontFamily="Tahoma"/>
+            </StackPanel>
+            <StackPanel  HorizontalAlignment="Stretch" Height="376" Width="779">
+                <ListBox ItemsSource="{Binding}" Name="AdminList" Height="376" Width="778">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <DockPanel>
+                                    <TextBlock Margin="20,0,0,0" FontFamily="Tahoma" DockPanel.Dock="Top" >                                    
+                                        <Run Text="{Binding Client.FirstName}" FontSize="17"/>
+                                    </TextBlock>
+                                    <TextBlock  Margin="20,0,0,0" FontFamily="Tahoma" HorizontalAlignment="Center" DockPanel.Dock="Top">
+                                        <Run Text="{Binding Service.Title}"/> <Run Text="Время: "/> <Run Text="{Binding StartTime}"/>
+                                    </TextBlock>
+                                    <TextBlock  Margin="20,0,0,0"  FontFamily="Tahoma" DockPanel.Dock="Bottom">
+
+                                    </TextBlock>
+                                </DockPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</Window>
